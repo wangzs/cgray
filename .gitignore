@@ -1,6 +1,9 @@
 Build/CgRay/Debug
+Build/CgRay/x64
 Build/CgRay/png_result/*.png
 *.sdf
 *.opensdf
 Build/CgRay/CgRay.vcxproj.filters
 *.suo
+Build/CgRay/CgRay.vcxproj.user
+*.ppm
