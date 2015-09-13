@@ -127,12 +127,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\core\ray.cpp" />
+    <ClCompile Include="..\..\Source\rt\camera.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\core\color.hpp" />
+    <ClInclude Include="..\..\Source\core\image.hpp" />
     <ClInclude Include="..\..\Source\core\math.hpp" />
-    <ClInclude Include="..\..\Source\core\ray.hpp" />
+    <ClInclude Include="..\..\Source\core\render.hpp" />
+    <ClInclude Include="..\..\Source\core\typedef.hpp" />
+    <ClInclude Include="..\..\Source\rt\camera.hpp" />
+    <ClInclude Include="..\..\Source\rt\light\light.hpp" />
+    <ClInclude Include="..\..\Source\rt\ray.hpp" />
+    <ClInclude Include="..\..\Source\rt\shape\baseshape.hpp" />
+    <ClInclude Include="..\..\Source\tools\julia.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

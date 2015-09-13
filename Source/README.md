@@ -5,9 +5,5 @@ raytracer, but are not specic to ray tracing in general
 
 #### rt
 > containing code specic to ray tracing
-
-#### light
-> basic light class
-
-#### shape
-> base shape, like sphere / triangle / cube / plane / mesh
+* light: basic light class
+* shape: base shape, like sphere / triangle / cube / plane / mesh
