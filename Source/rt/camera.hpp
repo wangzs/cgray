@@ -22,12 +22,13 @@ namespace cgray {
 		public:
 			Camera(Vector3f direction, Vector3f up);
 
-			virtual ~Camera() = 0;
-
 			virtual Ray generateRay(int x, int y) const = 0;
 
 			// get and set
-
+			void setCameraParams(const Vector3f& direction, const Vector3f& up);
+			const Vector3f& direction() const;
+			const Vector3f& up() const;
+			const Vector3f& right() const;
 
 		protected:
 			Vector3f direction_;		// Viewing direction
@@ -40,8 +41,6 @@ namespace cgray {
 			PerspectiveCamera();
 
 			PerspectiveCamera(Vector3f pos, Vector3f direction, Vector3f up, float fov, int res_x, int res_y);
-
-			virtual ~PerspectiveCamera();
 
 			virtual Ray generateRay(int x, int y) const override;
 
@@ -62,6 +61,8 @@ namespace cgray {
 
 		class OrthographicCamera : public Camera {
 		public:
+
+			virtual Ray generateRay(int x, int y) const;
 
 		private:
 

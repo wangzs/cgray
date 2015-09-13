@@ -21,6 +21,9 @@
 #include <Eigen/Geometry>
 #include <Eigen/Dense>
 
+#define _USE_MATH_DEFINES
+#include <cmath>
+
 using namespace Eigen;
 
 namespace cgray {
@@ -29,5 +32,12 @@ namespace cgray {
 		return color > 1.0f ? 1.0f : (color < .0f ? .0f : color);
 	}
 
+	inline float32 dToR(float32 degree) {
+		return degree * M_PI / 180.0f;
+	}
+
+	inline float32 rToD(float radian) {
+		return radian * 180.0f / M_PI;
+	}
 
 }

@@ -54,8 +54,8 @@ namespace cgray {
 				if (p.squaredNorm() > 1.0e+8)
 					break;
 				Vector3f q = p;
-				q.y = -p.y;
-				p = Vector3f(q.dot(p), q.cross(p).z, 0.0f) + c - Vector3f(0.0f, 0.0f, 0.0f);
+				q[1] = -p[1];
+				p = Vector3f(q.dot(p), q.cross(p)[2], 0.0f) + c - Vector3f(0.0f, 0.0f, 0.0f);
 			}
 			return i;
 		}
@@ -88,10 +88,10 @@ namespace cgray {
 		}
 
 		static Color3f a2computeColor(const rt::Ray& r) {
-			float theta = asin(r.direction().z) / pi * 2;
-			float phi = atan2(r.direction().y, r.direction().x) / pi;
-			float ofx = absfractional((r.origin().x + 1.0f) / 2.0f)*2.0f - 1.0f;
-			float ofy = absfractional((r.origin().y + 1.0f) / 2.0f)*2.0f - 1.0f;
+			float theta = asin(r.direction()[2]) / pi * 2;
+			float phi = atan2(r.direction()[1], r.direction()[1]) / pi;
+			float ofx = absfractional((r.origin()[0] + 1.0f) / 2.0f)*2.0f - 1.0f;
+			float ofy = absfractional((r.origin()[1] + 1.0f) / 2.0f)*2.0f - 1.0f;
 			Color3f color = Color3f::rep(0.0f);
 			color = color + a2computeWeight(phi, theta, Vector3f(-0.8f, 0.156f, 0.0f), 64.0f) * Color3f(0.8f, 0.8f, 1.0f);
 			color = color + a2computeWeight(phi, theta, Vector3f(-0.6f, 0.2f, 0.0f), 64.0f)*0.2f * Color3f(0.5f, 0.5f, -0.2f);
