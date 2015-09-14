@@ -2,6 +2,10 @@
 
 #include "../core/math.hpp"
 
+#ifdef _LOG_INFO
+#include <ostream>
+#endif
+
 namespace cgray {
 	namespace core {
 		struct Color3f {
@@ -69,8 +73,6 @@ namespace cgray {
 			}
 
 
-			// for test: a1computeColor
-
 			static Color3f rep(float val) {
 				return Color3f(val);
 			}
@@ -79,6 +81,15 @@ namespace cgray {
 		inline Color3f operator*(float32 scale, Color3f color) {
 			return color * scale;
 		}
+
+		// print
+#ifdef _LOG_INFO
+		inline std::ostream& operator<< (std::ostream& out, const Color3f& color) {
+			out << "(" << color.r << ", " << color.g << ", " << color.b << ")";
+			return out;
+		}
+#endif
+		
 
 	}
 }

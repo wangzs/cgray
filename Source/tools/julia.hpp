@@ -89,7 +89,7 @@ namespace cgray {
 
 		static Color3f a2computeColor(const rt::Ray& r) {
 			float theta = asin(r.direction()[2]) / pi * 2;
-			float phi = atan2(r.direction()[1], r.direction()[1]) / pi;
+			float phi = atan2(r.direction()[1], r.direction()[0]) / pi;
 			float ofx = absfractional((r.origin()[0] + 1.0f) / 2.0f)*2.0f - 1.0f;
 			float ofy = absfractional((r.origin()[1] + 1.0f) / 2.0f)*2.0f - 1.0f;
 			Color3f color = Color3f::rep(0.0f);

@@ -1,5 +1,6 @@
 Build/CgRay/Debug
 Build/CgRay/x64
+Build/CgRay/Release
 Build/CgRay/png_result/*.png
 *.sdf
 *.opensdf

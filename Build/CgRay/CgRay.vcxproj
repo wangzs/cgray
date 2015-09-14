@@ -75,7 +75,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>..\..\ThirdParty\zlib-1.2.8\include;..\..\ThirdParty\libpng-1.6.18\include;..\..\ThirdParty\png++-0.2.5\include;..\..\ThirdParty\eigen-3.2.5;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>__WIN32;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>__WIN32;_CRT_SECURE_NO_WARNINGS;_LOG_INFO;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -104,11 +104,15 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>__WIN32;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\ThirdParty\zlib-1.2.8\include;..\..\ThirdParty\libpng-1.6.18\include;..\..\ThirdParty\png++-0.2.5\include;..\..\ThirdParty\eigen-3.2.5;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>..\..\ThirdParty\libpng-1.6.18\lib;..\..\ThirdParty\zlib-1.2.8\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>zlibstatic.lib;libpng16_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -118,29 +122,32 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>__WIN32;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\ThirdParty\zlib-1.2.8\include;..\..\ThirdParty\libpng-1.6.18\include;..\..\ThirdParty\png++-0.2.5\include;..\..\ThirdParty\eigen-3.2.5;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>..\..\ThirdParty\libpng-1.6.18\lib;..\..\ThirdParty\zlib-1.2.8\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>zlibstatic.lib;libpng16_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\core\image.cpp" />
-    <ClCompile Include="..\..\Source\core\render.cpp" />
     <ClCompile Include="..\..\Source\main.cpp" />
     <ClCompile Include="..\..\Source\rt\camera.cpp" />
+    <ClCompile Include="..\..\Source\rt\render.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\core\color.hpp" />
     <ClInclude Include="..\..\Source\core\image.hpp" />
     <ClInclude Include="..\..\Source\core\math.hpp" />
-    <ClInclude Include="..\..\Source\core\render.hpp" />
     <ClInclude Include="..\..\Source\core\typedef.hpp" />
     <ClInclude Include="..\..\Source\rt\camera.hpp" />
     <ClInclude Include="..\..\Source\rt\light\light.hpp" />
     <ClInclude Include="..\..\Source\rt\ray.hpp" />
+    <ClInclude Include="..\..\Source\rt\render.hpp" />
     <ClInclude Include="..\..\Source\rt\shape\baseshape.hpp" />
     <ClInclude Include="..\..\Source\tests\render_test.hpp" />
     <ClInclude Include="..\..\Source\tools\julia.hpp" />

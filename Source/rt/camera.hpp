@@ -31,6 +31,9 @@ namespace cgray {
 			const Vector3f& right() const;
 
 		protected:
+			void norm();
+
+		protected:
 			Vector3f direction_;		// Viewing direction
 			Vector3f up_;				// Up-vector
 			Vector3f right_;			// Right-vector
@@ -40,16 +43,10 @@ namespace cgray {
 		public:
 			PerspectiveCamera();
 
-			PerspectiveCamera(Vector3f pos, Vector3f direction, Vector3f up, float fov, int res_x, int res_y);
+			PerspectiveCamera(Vector3f pos, Vector3f target, Vector3f up, float fov, int res_x, int res_y);
 
 			virtual Ray generateRay(int x, int y) const override;
 
-
-
-
-		private:
-
-			void norm();
 
 		private:
 			Vector3f pos_;		// Camera origin
@@ -61,12 +58,30 @@ namespace cgray {
 
 		class OrthographicCamera : public Camera {
 		public:
+			OrthographicCamera();
+			OrthographicCamera(Vector3f pos, Vector3f target, Vector3f up, int res_x, int res_y);
 
-			virtual Ray generateRay(int x, int y) const;
+			virtual Ray generateRay(int x, int y) const override;
+
+		private:
+			Vector3f pos_;		// Camera origin
+			int res_x_;			// Image resolution width
+			int res_y_;			// Image resolution height
+		};
+
+		class FishEyeCamera : public Camera {
+		public:
+
+			virtual Ray generateRay(int x, int y) const override;
 
 		private:
 
 		};
+
+
+
+
+
 	}
 }
 

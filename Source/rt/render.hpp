@@ -21,6 +21,10 @@ namespace cgray {
 
 			// FIXME: just for test
 			void test_rendering1(core::Image& output);
+
+
+		private:
+			std::shared_ptr<Camera> camera_;
 		};
 	}
 }
