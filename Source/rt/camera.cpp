@@ -1,4 +1,4 @@
-#include "camera.hpp"
+﻿#include "camera.hpp"
 
 #ifdef _LOG_INFO
 #include <iostream>
@@ -88,10 +88,50 @@ namespace cgray {
 		return ray;
 	}
 
+	rt::FishEyeCamera::FishEyeCamera()
+		: Camera(Vector3f(0,0,-1.0f), Vector3f(.0f,1.0f,.0f)), pos_(0.0f,0.0f,1.0f), fov_(90.0f), res_x_(400), res_y_(400)
+	{
+		norm();
+	}
+
+	rt::FishEyeCamera::FishEyeCamera(Vector3f pos, Vector3f target, Vector3f up, float fov, int res_x, int res_y)
+		: Camera(target - pos, up), pos_(pos), fov_(fov), res_x_(res_x), res_y_(res_y)
+	{
+		norm();
+	}
+
 	cgray::rt::Ray rt::FishEyeCamera::generateRay(int x, int y) const
 	{
-		// TODO
-		return Ray();
+		Ray ray;
+		float x0 = 2.0 * x / res_x_ - 1.0f;
+		float y0 = 2.0 * y / res_y_ - 1.0f;
+		float phi = 0.0f;
+		// radius
+		float r = sqrt(x0*x0 + y0*y0);
+		if (r <= 1.0) {
+			if (r > -M_EPSILON && r < M_EPSILON) {
+				phi = 0.0f;
+			}
+			else {
+				if (x < -M_EPSILON) {
+					phi = M_PI - asin(y0 / r);
+				}
+				else {
+					phi = asin(y0 / r);
+				}
+			}
+
+			float fov = dToR(fov_);
+			float theta = r * (fov / 2.0);	// 按照投影的长度比例算出在xy平面上与x轴夹角
+
+			ray.setOrigin(pos_);
+			float dx = sin(theta)*cos(phi);
+			float dy = sin(theta) * sin(phi);
+			float dz = cos(theta);
+			ray.setDirection(Vector3f(dx, dy, dz));
+			return ray;
+		}
+		return Ray(pos_, direction_);
 	}
 
 }

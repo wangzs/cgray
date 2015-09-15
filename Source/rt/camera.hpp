@@ -69,13 +69,22 @@ namespace cgray {
 			int res_y_;			// Image resolution height
 		};
 
+
+		/**
+		 * Fish eye camera reference: http://paulbourke.net/dome/fisheye/   
+		 */
 		class FishEyeCamera : public Camera {
 		public:
+			FishEyeCamera();
+			FishEyeCamera(Vector3f pos, Vector3f target, Vector3f up, float fov, int res_x, int res_y);
 
 			virtual Ray generateRay(int x, int y) const override;
 
 		private:
-
+			Vector3f pos_;		// Camera origin
+			float fov_;
+			int res_x_;			// Image resolution width
+			int res_y_;			// Image resolution height
 		};
 
 

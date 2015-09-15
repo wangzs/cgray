@@ -26,6 +26,8 @@
 
 using namespace Eigen;
 
+#define M_EPSILON 1e-5
+
 namespace cgray {
 
 	inline float32 clampColor(float32 color) {
