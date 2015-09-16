@@ -17,7 +17,7 @@ namespace cgray {
 		class Plane : public Shape {
 		public:
 			Plane();
-			Plane(Vector3f point, Vector3f normal);
+			Plane(const Vector3f& point, const Vector3f& normal);
 			Plane(const Plane& ref) = default;
 
 			virtual bool intersect(const Ray&, IntersectInfo& info) override;
@@ -32,9 +32,30 @@ namespace cgray {
 				return normal_;
 			}
 
-		private:
+		protected:
 			Vector3f point_;
 			Vector3f normal_;
 		};
+
+
+		// disc
+		class DiscPlane : public Plane {
+		public:
+			DiscPlane();
+			DiscPlane(const Vector3f& point, const Vector3f& normal, float radius);
+
+			virtual bool intersect(const Ray& ray, IntersectInfo& info) override;
+
+			inline void setRadius(float radius) {
+				radius_ = radius;
+			}
+			inline float radius() const {
+				return radius_;
+			}
+
+		private:
+			float radius_;
+		};
+
 	}
 }

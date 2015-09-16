@@ -13,9 +13,9 @@ namespace cgray {
 
 		void Image::setColor(int x, int y, const Color3f & color)
 		{
-			data_[y][x].red = color.r * 255;
-			data_[y][x].green = color.g * 255;
-			data_[y][x].blue = color.b * 255;
+			data_[y][x].red = (png::byte)(color.r * 255);
+			data_[y][x].green = (png::byte)(color.g * 255);
+			data_[y][x].blue = (png::byte)(color.b * 255);
 		}
 
 
