@@ -35,11 +35,11 @@ namespace cgray {
 	}
 
 	inline float32 dToR(float32 degree) {
-		return degree * M_PI / 180.0f;
+		return (float)(degree * M_PI / 180.0f);
 	}
 
 	inline float32 rToD(float radian) {
-		return radian * 180.0f / M_PI;
+		return (float)(radian * 180.0f / M_PI);
 	}
 
 }

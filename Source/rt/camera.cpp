@@ -55,11 +55,11 @@ namespace cgray {
 	rt::Ray rt::PerspectiveCamera::generateRay(int x, int y) const
 	{
 		static float tan_fov = std::tan(dToR(fov_ / 2));
-		float32 x0 = (float)x / (float)res_x_;
-		float32 y0 = (float)y / (float)res_y_;
+		float x0 = 2.0 * x / res_x_ - 1.0f;
+		float y0 = 2.0 * y / res_y_ - 1.0f;
 		Ray ray;
 		ray.setOrigin(pos_);
-		Vector3f direction = direction_ + right_ * ((x0 - 0.5f) * tan_fov) + up_ * ((y0 - 0.5f) * tan_fov);
+		Vector3f direction = direction_ + right_ * (x0 * tan_fov) + up_ * (y0 * tan_fov);
 		ray.setDirection(direction);
 		return ray;
 	}
@@ -79,11 +79,11 @@ namespace cgray {
 
 	rt::Ray cgray::rt::OrthographicCamera::generateRay(int x, int y) const
 	{
-		float32 x0 = (float)x / (float)res_x_;
-		float32 y0 = (float)y / (float)res_y_;
+		float x0 = 2.0 * x / res_x_ - 1.0f;
+		float y0 = 2.0 * y / res_y_ - 1.0f;
 		Ray ray;
 		ray.setDirection(direction_);
-		Vector3f pos = pos_ + right_ * (x0 - 0.5f) + up_ * (y0 - 0.5f);
+		Vector3f pos = pos_ + right_ * x0 + up_ * y0;
 		ray.setOrigin(pos);
 		return ray;
 	}

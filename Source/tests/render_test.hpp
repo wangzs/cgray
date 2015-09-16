@@ -42,7 +42,7 @@ namespace cgray {
  
  			core::Image image2(600, 400);
  			std::shared_ptr<rt::Camera> camera2(
- 				new rt::OrthographicCamera(Vector3f(0.0, 0, 1.0),	// position
+ 				new rt::OrthographicCamera(Vector3f(0.0, 0, 5.0),	// position
  					Vector3f(0.6, 0.5, 0),	// target
  					Vector3f(0, 1, 0),	// up
  					image2.width(), image2.height()));

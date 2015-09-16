@@ -138,6 +138,7 @@
     <ClCompile Include="..\..\Source\main.cpp" />
     <ClCompile Include="..\..\Source\rt\camera.cpp" />
     <ClCompile Include="..\..\Source\rt\render.cpp" />
+    <ClCompile Include="..\..\Source\rt\shape\plane.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\core\color.hpp" />
@@ -149,6 +150,8 @@
     <ClInclude Include="..\..\Source\rt\ray.hpp" />
     <ClInclude Include="..\..\Source\rt\render.hpp" />
     <ClInclude Include="..\..\Source\rt\shape\baseshape.hpp" />
+    <ClInclude Include="..\..\Source\rt\shape\plane.hpp" />
+    <ClInclude Include="..\..\Source\rt\shape\triangle.hpp" />
     <ClInclude Include="..\..\Source\tests\render_test.hpp" />
     <ClInclude Include="..\..\Source\tools\julia.hpp" />
   </ItemGroup>
