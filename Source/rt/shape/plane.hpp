@@ -32,6 +32,10 @@ namespace cgray {
 				return normal_;
 			}
 
+			virtual Vector3f getNormal(const Vector3f& pos) const override;
+
+			virtual bool getAABB(AABB& box) const override;
+
 		protected:
 			Vector3f point_;
 			Vector3f normal_;

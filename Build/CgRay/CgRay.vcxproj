@@ -134,11 +134,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\core\color.cpp" />
     <ClCompile Include="..\..\Source\core\image.cpp" />
     <ClCompile Include="..\..\Source\main.cpp" />
     <ClCompile Include="..\..\Source\rt\camera.cpp" />
     <ClCompile Include="..\..\Source\rt\render.cpp" />
+    <ClCompile Include="..\..\Source\rt\shape\aabb.cpp" />
     <ClCompile Include="..\..\Source\rt\shape\plane.cpp" />
+    <ClCompile Include="..\..\Source\rt\shape\quadric.cpp" />
     <ClCompile Include="..\..\Source\rt\shape\sphere.cpp" />
     <ClCompile Include="..\..\Source\rt\shape\triangle.cpp" />
   </ItemGroup>
@@ -151,8 +154,10 @@
     <ClInclude Include="..\..\Source\rt\light\light.hpp" />
     <ClInclude Include="..\..\Source\rt\ray.hpp" />
     <ClInclude Include="..\..\Source\rt\render.hpp" />
+    <ClInclude Include="..\..\Source\rt\shape\aabb.hpp" />
     <ClInclude Include="..\..\Source\rt\shape\baseshape.hpp" />
     <ClInclude Include="..\..\Source\rt\shape\plane.hpp" />
+    <ClInclude Include="..\..\Source\rt\shape\quadric.hpp" />
     <ClInclude Include="..\..\Source\rt\shape\sphere.hpp" />
     <ClInclude Include="..\..\Source\rt\shape\triangle.hpp" />
     <ClInclude Include="..\..\Source\tests\render_test.hpp" />

@@ -18,6 +18,10 @@ namespace cgray {
 				return vertex_[index];
 			}
 
+			virtual Vector3f getNormal(const Vector3f& pos) const override;
+
+			virtual bool getAABB(AABB& box) const override;
+
 
 		private:
 			Vector3f vertex_[3];

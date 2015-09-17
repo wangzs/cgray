@@ -53,3 +53,14 @@ bool cgray::rt::Triangle::intersect(const Ray & ray, IntersectInfo & info)
 
 	return false;
 }
+
+Eigen::Vector3f cgray::rt::Triangle::getNormal(const Vector3f& pos) const
+{
+	return (vertex_[1] - vertex_[0]).cross(pos - vertex_[0]).normalized();
+}
+
+bool cgray::rt::Triangle::getAABB(AABB& box) const
+{
+	// TODO
+	return true;
+}

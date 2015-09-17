@@ -20,6 +20,10 @@ namespace cgray {
 				return radius_;
 			}
 
+			virtual Vector3f getNormal(const Vector3f& pos) const override;
+
+			virtual bool getAABB(AABB& box) const override;
+
 		private:
 			Vector3f center_;
 			float radius_;

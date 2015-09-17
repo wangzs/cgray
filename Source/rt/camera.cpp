@@ -55,8 +55,8 @@ namespace cgray {
 	rt::Ray rt::PerspectiveCamera::generateRay(int x, int y) const
 	{
 		static float tan_fov = std::tan(dToR(fov_ / 2));
-		float x0 = 2.0 * x / res_x_ - 1.0f;
-		float y0 = 2.0 * y / res_y_ - 1.0f;
+		float x0 = 2.0f * x / res_x_ - 1.0f;
+		float y0 = 2.0f * y / res_y_ - 1.0f;
 		Ray ray;
 		ray.setOrigin(pos_);
 		Vector3f direction = direction_ + right_ * (x0 * tan_fov) + up_ * (y0 * tan_fov);
@@ -79,8 +79,8 @@ namespace cgray {
 
 	rt::Ray cgray::rt::OrthographicCamera::generateRay(int x, int y) const
 	{
-		float x0 = 2.0 * x / res_x_ - 1.0f;
-		float y0 = 2.0 * y / res_y_ - 1.0f;
+		float x0 = 2.0f * x / res_x_ - 1.0f;
+		float y0 = 2.0f * y / res_y_ - 1.0f;
 		Ray ray;
 		ray.setDirection(direction_);
 		Vector3f pos = pos_ + right_ * x0 + up_ * y0;
@@ -103,8 +103,8 @@ namespace cgray {
 	cgray::rt::Ray rt::FishEyeCamera::generateRay(int x, int y) const
 	{
 		Ray ray;
-		float x0 = 2.0 * x / res_x_ - 1.0f;
-		float y0 = 2.0 * y / res_y_ - 1.0f;
+		float x0 = 2.0f * x / res_x_ - 1.0f;
+		float y0 = 2.0f * y / res_y_ - 1.0f;
 		float phi = 0.0f;
 		// radius
 		float r = sqrt(x0*x0 + y0*y0);
@@ -114,7 +114,7 @@ namespace cgray {
 			}
 			else {
 				if (x < -M_EPSILON) {
-					phi = M_PI - asin(y0 / r);
+					phi = (float)(M_PI - asin(y0 / r));
 				}
 				else {
 					phi = asin(y0 / r);
@@ -122,7 +122,7 @@ namespace cgray {
 			}
 
 			float fov = dToR(fov_);
-			float theta = r * (fov / 2.0);	// 按照投影的长度比例算出在xy平面上与x轴夹角
+			float theta = r * (fov / 2.0f);	// 按照投影的长度比例算出在xy平面上与x轴夹角
 
 			ray.setOrigin(pos_);
 			float dx = sin(theta)*cos(phi);

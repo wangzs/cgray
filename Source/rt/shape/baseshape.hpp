@@ -1,3 +1,13 @@
+/*!
+ * \file baseshape.hpp
+ * \date 2015/09/16 23:13
+ *
+ * \author wangzs
+ * Contact: wang.zhenshui@gmail.com
+ *
+ * \brief: Static Object Intersections - http://www.realtimerendering.com/intersections.html
+ * \note
+*/
 #pragma once
 
 #include "../../core/math.hpp"
@@ -8,6 +18,7 @@
 namespace cgray {
 	namespace rt {
 		class Shape;
+		class AABB;
 
 		struct IntersectInfo {
 			bool is_hit;
@@ -26,6 +37,10 @@ namespace cgray {
 		public:
 
 			virtual bool intersect(const Ray& ray, IntersectInfo& info) = 0;
+
+			virtual Vector3f getNormal(const Vector3f& pos) const = 0;
+
+			virtual bool getAABB(AABB& box) const = 0;
 
 		};
 	}

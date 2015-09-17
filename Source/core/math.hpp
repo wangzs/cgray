@@ -29,6 +29,9 @@ using namespace Eigen;
 #define M_EPSILON 1e-5
 
 namespace cgray {
+	inline bool isApproximateZero(float v) {
+		return -M_EPSILON < v && v < M_EPSILON;
+	}
 
 	inline float32 clampColor(float32 color) {
 		return color > 1.0f ? 1.0f : (color < .0f ? .0f : color);

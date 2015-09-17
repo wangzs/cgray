@@ -39,6 +39,17 @@ void cgray::rt::Plane::setNormal(const Vector3f & normal_vec)
 	normal_ = normal_vec.normalized();
 }
 
+Eigen::Vector3f cgray::rt::Plane::getNormal(const Vector3f& pos) const
+{
+	return normal_;
+}
+
+bool cgray::rt::Plane::getAABB(AABB& box) const
+{
+	// ? not need aabb
+	return false;
+}
+
 cgray::rt::DiscPlane::DiscPlane()
 	: Plane(Vector3f(.0f, .0f, .0f), Vector3f(.0f, 1.0f, .0f)), radius_(1.0f)
 {

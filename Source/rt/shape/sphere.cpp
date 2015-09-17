@@ -45,3 +45,14 @@ void cgray::rt::Sphere::setRadius(float radius)
 	radius_ = radius;
 }
 
+Eigen::Vector3f cgray::rt::Sphere::getNormal(const Vector3f& pos) const
+{
+	return (pos - center_).normalized();
+}
+
+bool cgray::rt::Sphere::getAABB(AABB& box) const
+{
+	// TODO
+	return true;
+}
+
