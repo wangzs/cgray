@@ -139,6 +139,7 @@
     <ClCompile Include="..\..\Source\main.cpp" />
     <ClCompile Include="..\..\Source\rt\camera.cpp" />
     <ClCompile Include="..\..\Source\rt\render.cpp" />
+    <ClCompile Include="..\..\Source\rt\scene.cpp" />
     <ClCompile Include="..\..\Source\rt\shape\aabb.cpp" />
     <ClCompile Include="..\..\Source\rt\shape\plane.cpp" />
     <ClCompile Include="..\..\Source\rt\shape\quadric.cpp" />
@@ -154,6 +155,7 @@
     <ClInclude Include="..\..\Source\rt\light\light.hpp" />
     <ClInclude Include="..\..\Source\rt\ray.hpp" />
     <ClInclude Include="..\..\Source\rt\render.hpp" />
+    <ClInclude Include="..\..\Source\rt\scene.hpp" />
     <ClInclude Include="..\..\Source\rt\shape\aabb.hpp" />
     <ClInclude Include="..\..\Source\rt\shape\baseshape.hpp" />
     <ClInclude Include="..\..\Source\rt\shape\plane.hpp" />
