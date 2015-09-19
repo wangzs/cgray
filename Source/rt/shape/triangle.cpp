@@ -30,7 +30,7 @@ bool cgray::rt::Triangle::intersect(const Ray & ray, IntersectInfo & info)
 	float inv_det = 1.0f / det;
 	Vector3f t = ray.origin() - vertex_[0];
 	float u = t.dot(p) * inv_det;
-	if (u < 0.0f && u > 1.0f)
+	if (u < 0.0f || u > 1.0f)
 		return false;
 
 	Vector3f q = t.cross(e1_0);
@@ -45,6 +45,7 @@ bool cgray::rt::Triangle::intersect(const Ray & ray, IntersectInfo & info)
 		info.hit_point = ray.origin() + dist * ray.direction();
 		info.hit_shape = std::make_shared<Triangle>(*this);
 		info.is_hit = true;
+		info.dist = dist;
 		info.normal = (e1_0.cross(e2_0)).normalized();
 		info.ray = ray;
 

@@ -15,6 +15,7 @@
 
 
 #include <memory>
+#include <float.h>
 namespace cgray {
 	namespace rt {
 		class Shape;
@@ -22,12 +23,14 @@ namespace cgray {
 
 		struct IntersectInfo {
 			bool is_hit;
+			float dist;
 			std::shared_ptr<Shape> hit_shape;
 			Vector3f hit_point;
 			Vector3f normal;
 			Ray ray;
 
 			IntersectInfo() {
+				dist = FLT_MAX;
 				is_hit = false;
 				hit_shape = nullptr;
 			}

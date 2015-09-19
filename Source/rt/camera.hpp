@@ -49,6 +49,7 @@ namespace cgray {
 
 
 		private:
+			float ratio_;		// height-width ratio
 			Vector3f pos_;		// Camera origin
 			float fov_;			// (Full) vertical opening angle of the viewing frustum (in degrees)
 			int res_x_;			// Image resolution width
@@ -59,11 +60,12 @@ namespace cgray {
 		class OrthographicCamera : public Camera {
 		public:
 			OrthographicCamera();
-			OrthographicCamera(Vector3f pos, Vector3f target, Vector3f up, int res_x, int res_y);
+			OrthographicCamera(Vector3f pos, Vector3f target, Vector3f up, int res_x, int res_y, float scale=1.0f);
 
 			virtual Ray generateRay(int x, int y) const override;
 
 		private:
+			float scale_;
 			Vector3f pos_;		// Camera origin
 			int res_x_;			// Image resolution width
 			int res_y_;			// Image resolution height

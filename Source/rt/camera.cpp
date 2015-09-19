@@ -43,23 +43,27 @@ namespace cgray {
 		: Camera(Vector3f(.0f, .0f, -1.0f), Vector3f(.0f, 1.0f, .0f)),
 		pos_(Vector3f(.0f, .0f, 1.0f)), fov_(90.0f), res_x_(400), res_y_(200)
 	{
+		ratio_ = (float)res_y_ / res_x_;
 		norm();
 	}
 
 	rt::PerspectiveCamera::PerspectiveCamera(Vector3f pos, Vector3f target, Vector3f up, float fov, int res_x, int res_y)
 		: Camera(target-pos, up), pos_(pos), fov_(fov), res_x_(res_x), res_y_(res_y)
 	{
+		ratio_ = (float)res_y_ / res_x_;
 		norm();
 	}
 
 	rt::Ray rt::PerspectiveCamera::generateRay(int x, int y) const
 	{
-		static float tan_fov = std::tan(dToR(fov_ / 2));
-		float x0 = 2.0f * x / res_x_ - 1.0f;
-		float y0 = 2.0f * y / res_y_ - 1.0f;
+		// image plane scope is: -1.0f~1.0f in real world
+		static float dist = 1.0f / std::tan(dToR(fov_ / 2));
+		float x0 = 2.0f * (x + 0.5f) / res_x_ - 1.0f;
+		float y0 = 1.0f - 2.0f * (y + 0.5f) / res_y_;
+
 		Ray ray;
 		ray.setOrigin(pos_);
-		Vector3f direction = direction_ + right_ * (x0 * tan_fov) + up_ * (y0 * tan_fov);
+		Vector3f direction = direction_*dist + right_ * x0 + up_ * (y0 * ratio_);
 		ray.setDirection(direction);
 		return ray;
 	}
@@ -68,19 +72,21 @@ namespace cgray {
 	rt::OrthographicCamera::OrthographicCamera()
 		: Camera(Vector3f(.0f, .0f, -1.0f), Vector3f(.0f, 1.0f, .0f)), pos_(.0f, .0f, 1.0f), res_x_(400), res_y_(200)
 	{
+		scale_ = 1.0f;
 		norm();
 	}
 
-	rt::OrthographicCamera::OrthographicCamera(Vector3f pos, Vector3f target, Vector3f up, int res_x, int res_y)
+	rt::OrthographicCamera::OrthographicCamera(Vector3f pos, Vector3f target, Vector3f up, int res_x, int res_y, float scale)
 		: Camera(target-pos, up), pos_(pos), res_x_(res_x), res_y_(res_y)
 	{
+		scale_ = scale;
 		norm();
 	}
 
 	rt::Ray cgray::rt::OrthographicCamera::generateRay(int x, int y) const
 	{
-		float x0 = 2.0f * x / res_x_ - 1.0f;
-		float y0 = 2.0f * y / res_y_ - 1.0f;
+		float x0 = (2.0f * x / res_x_ - 1.0f )* scale_;
+		float y0 = (2.0f * y / res_y_ - 1.0f )* scale_;
 		Ray ray;
 		ray.setDirection(direction_);
 		Vector3f pos = pos_ + right_ * x0 + up_ * y0;

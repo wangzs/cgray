@@ -11,8 +11,7 @@
 #pragma once
 #include "shape/baseshape.hpp"
 #include "light/light.hpp"
-#include "camera.hpp"
-
+#include "shape/group.hpp"
 #include <memory>
 
 namespace cgray {
@@ -21,10 +20,16 @@ namespace cgray {
 		public:
 			Scene();
 
+			inline void setWorld(std::shared_ptr<Group> objs) {
+				worlds_ = objs;
+			}
+			inline void setLight(std::shared_ptr<Light> light) {
+				light_ = light;
+			}
+
 		private:
-			std::shared_ptr<Shape> shapes_;
-			std::shared_ptr<Light> lights_;
-			std::shared_ptr<Camera> camera_;
+			std::shared_ptr<Group> worlds_;
+			std::shared_ptr<Light> light_;
 		};
 	}
 }

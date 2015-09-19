@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../core/image.hpp"
+#include "scene.hpp"
 
 #include <memory>
 
@@ -11,8 +12,8 @@ namespace cgray {
 		class Render {
 		public:
 			Render() {}
-
 			Render(std::shared_ptr<Camera> camera);
+			Render(std::shared_ptr<Camera> camera, std::shared_ptr<Group> group);
 
 			void rendering(core::Image& output);
 
@@ -22,9 +23,12 @@ namespace cgray {
 			// FIXME: just for test
 			void test_rendering1(core::Image& output);
 
+			void test_rendering2(core::Image& output);
+			void test_rendering3(core::Image& output, const core::Color3f& near_color, float near, const core::Color3f& far_color, float far);
 
 		private:
 			std::shared_ptr<Camera> camera_;
+			std::shared_ptr<Group> group_;
 		};
 	}
 }

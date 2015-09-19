@@ -1,6 +1,10 @@
 #include "aabb.hpp"
 #include <algorithm>
 
+#ifdef _LOG_INFO
+#include <iostream>
+#endif
+
 cgray::rt::AABB::AABB()
 	: min_(-0.5f,0.0f,-0.5f), max_(0.5f,1.0f,0.5f)
 {
@@ -14,11 +18,31 @@ cgray::rt::AABB::AABB(const Vector3f & p1, const Vector3f & p2)
 
 /**
  *  slab method: http://www.siggraph.org/education/materials/HyperGraph/raytrace/rtinter3.htm   
+ *	http://www.cs.utah.edu/~awilliam/box/box.pdf
  */
 bool cgray::rt::AABB::intersect(const Ray & ray, IntersectInfo & info)
 {
 	// r.dir is unit direction vector of ray
-	Vector3f dir_frac;
+	Vector3f dir_frac(0,0,0);
+
+	if (-M_EPSILON < ray.direction()[0] && ray.direction()[0] < M_EPSILON) {
+		if (min_[0] > ray.origin()[0] || ray.origin()[0] > max_[0]) {
+			return false;
+		}
+	}
+
+	if (-M_EPSILON < ray.direction()[1] && ray.direction()[1] < M_EPSILON) {
+		if (min_[1] > ray.origin()[1] || ray.origin()[1] > max_[1]) {
+			return false;
+		}
+	}
+
+	if (-M_EPSILON < ray.direction()[2] && ray.direction()[2] < M_EPSILON) {
+		if (min_[2] > ray.origin()[2] || ray.origin()[2] > max_[2]) {
+			return false;
+		}
+	}
+
 	dir_frac[0] = 1.0f / ray.direction()[0];
 	dir_frac[1] = 1.0f / ray.direction()[1];
 	dir_frac[2] = 1.0f / ray.direction()[2];
@@ -48,7 +72,8 @@ bool cgray::rt::AABB::intersect(const Ray & ray, IntersectInfo & info)
 	info.hit_point = ray.origin() + ray.direction() * tmin;
 	info.hit_shape = std::make_shared<AABB>(*this);
 	info.is_hit = true;
-	info.normal = Vector3f(1.0f,0,0);	//FIXME
+	info.dist = tmin;
+	info.normal = getNormal(info.hit_point);
 	info.ray = ray;
 
 	return true;
@@ -87,11 +112,11 @@ Eigen::Vector3f cgray::rt::AABB::getNormal(const Vector3f& pos) const
 	}
 
 	float left = min_vec.dot(Vector3f(-1.0f, 0.0f, 0.0f));
-	float right = min_vec.dot(Vector3f(1.0f, 0.0f, 0.0f));
-	float up = min_vec.dot(Vector3f(0.0f, 1.0f, 0.0f));
+	float right = max_vec.dot(Vector3f(1.0f, 0.0f, 0.0f));
 	float bottom = min_vec.dot(Vector3f(0.0f, -1.0f, 0.0f));
+	float up = max_vec.dot(Vector3f(0.0f, 1.0f, 0.0f));
 	float back = min_vec.dot(Vector3f(0.0f, 0.0f, -1.0f));
-	float front = min_vec.dot(Vector3f(0.0f, 0.0f, 1.0f));
+	float front = max_vec.dot(Vector3f(0.0f, 0.0f, 1.0f));
 	if (-M_EPSILON < left && left < M_EPSILON) {
 		return Vector3f(-1.0f, 0.0f, 0.0f);
 	} 
@@ -110,6 +135,8 @@ Eigen::Vector3f cgray::rt::AABB::getNormal(const Vector3f& pos) const
 	if (-M_EPSILON < front && front < M_EPSILON) {
 		return Vector3f(0.0f, 0.0f, 1.0f);
 	}
+	
+	return Vector3f(0.0f, 0.0f, 0.0f);
 }
 
 bool cgray::rt::AABB::getAABB(AABB& box) const

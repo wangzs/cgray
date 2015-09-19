@@ -14,12 +14,13 @@ cgray::rt::Plane::Plane(const Vector3f& point, const Vector3f& normal_vec)
 bool cgray::rt::Plane::intersect(const Ray& ray, IntersectInfo& info)
 {
 	float denom = normal_.dot(ray.direction());
-	if (denom > M_EPSILON) {
+	if (denom > M_EPSILON || denom < -M_EPSILON) {
 		float t = (point_ - ray.origin()).dot(normal_) / denom;
 		if (t >= 0) {
 			info.hit_point = ray.origin() + t * ray.direction();
 			info.hit_shape = std::make_shared<Plane>(*this);
 			info.is_hit = true;
+			info.dist = t;
 			info.normal = normal_;
 			info.ray = ray;
 

@@ -78,6 +78,7 @@ bool cgray::rt::Quadric::intersect(const Ray & ray, IntersectInfo & info)
 				info.hit_point = ray.origin() + ray.direction() * t;
 				info.hit_shape = std::make_shared<Quadric>(*this);
 				info.is_hit = true;
+				info.dist = t;
 				info.normal = norm.normalized();
 				info.ray = ray;
 
