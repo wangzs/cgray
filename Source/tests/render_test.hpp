@@ -9,6 +9,7 @@
 #include "../rt/shape/plane.hpp"
 #include "../rt/shape/triangle.hpp"
 #include "../rt/shape/aabb.hpp"
+#include "../rt/kdtree.hpp"
 
 #include <iostream>
 
@@ -117,7 +118,11 @@ namespace cgray {
 
 			std::shared_ptr<rt::SimpleGroup> scene(new rt::SimpleGroup());
 
-			scene->add(std::make_shared<rt::Mesh>(rt::Mesh("../../Build/CgRay/model/cow.obj", "../../Build/CgRay/model/")));
+			rt::Mesh mesh("../../Build/CgRay/model/Buddha.obj", "../../Build/CgRay/model/");
+			std::shared_ptr<rt::KdNode> fash_mesh = rt::KdNode::build(mesh.getMesh(), 0);
+			scene->add(fash_mesh);
+
+			//scene->add(std::make_shared<rt::Mesh>(rt::Mesh("../../Build/CgRay/model/cow.obj", "../../Build/CgRay/model/")));
 
 			std::shared_ptr<rt::Camera> camera0(
 				new rt::FishEyeCamera(Vector3f(0.0, 0, 4.0f),
@@ -129,7 +134,7 @@ namespace cgray {
 				new rt::PerspectiveCamera(Vector3f(0.0, 0.5, 5.0f),	// position
 					Vector3f(0, 0, -1),	// target
 					Vector3f(0, 1, 0),	// up
-					90,					// fov
+					40,					// fov
 					image0.width(), image0.height()));
 			std::shared_ptr<rt::Camera> camera2(
 				new rt::OrthographicCamera(Vector3f(0.0, 0, 5.0f),	// position
@@ -138,7 +143,7 @@ namespace cgray {
 					image0.width(), image0.height(), 20.f));
 			rt::Render render(camera1, scene);
 			render.test_rendering4(image0);
-			image0.flushToFile("png_result/render_mesh00.png");
+			image0.flushToFile("png_result/mesh-fash-Buddha.png");
 		}
 
 

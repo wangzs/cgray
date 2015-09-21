@@ -3,12 +3,12 @@
 static const int KDTREE_DEPTH = 10;
 
 
-std::shared_ptr<cgray::rt::KdNode> cgray::rt::KdNode::build(std::vector<std::shared_ptr<Triangle>> trias, int depth) const
+std::shared_ptr<cgray::rt::KdNode> cgray::rt::KdNode::build(std::vector<std::shared_ptr<Triangle>> trias, int depth)
 {
 	std::shared_ptr<KdNode> root(new KdNode());
 	root->triangles = trias;
-	root->left = nullptr;
-	root->right = nullptr;
+	root->left = std::make_shared<KdNode>();
+	root->right = std::make_shared<KdNode>();
 
 	if (trias.size() == 0)
 		return root;
@@ -82,4 +82,15 @@ bool cgray::rt::KdNode::intersect(const Ray & ray, IntersectInfo & info)
 		}
 	}
 	return false;
+}
+
+Eigen::Vector3f cgray::rt::KdNode::getNormal(const Vector3f& pos) const
+{
+	return Vector3f();
+}
+
+bool cgray::rt::KdNode::getAABB(AABB& box) const
+{
+	box = bbox;
+	return true;
 }
