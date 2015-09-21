@@ -2,6 +2,7 @@
 
 #include "../core/image.hpp"
 #include "scene.hpp"
+#include "shape/mesh.hpp"
 
 #include <memory>
 
@@ -26,9 +27,12 @@ namespace cgray {
 			void test_rendering2(core::Image& output);
 			void test_rendering3(core::Image& output, const core::Color3f& near_color, float near, const core::Color3f& far_color, float far);
 
+			void test_rendering4(core::Image& output);
+
 		private:
 			std::shared_ptr<Camera> camera_;
 			std::shared_ptr<Group> group_;
+			std::shared_ptr<Mesh> mesh_;
 		};
 	}
 }

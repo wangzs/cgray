@@ -1,5 +1,6 @@
 #pragma once
 #include "baseshape.hpp"
+#include "aabb.hpp"
 
 #include <vector>
 #include <memory>
@@ -28,7 +29,7 @@ namespace cgray {
 
 		private:
 			std::vector<std::shared_ptr<Shape>> groups_;
-
+			AABB bbox_;
 
 		};
 	}

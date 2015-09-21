@@ -66,7 +66,7 @@ namespace cgray {
 				Ray ray = camera_->generateRay(x, y);
 				if (group_->intersect(ray, info)) {
 					float ratio = (info.dist - near) / interval;
-					core::Color3f color(near_color * ratio);
+					core::Color3f color(near_color * ratio + (1-ratio)*far_color);
 					output.setColor(x, y, color);
 				}
 				else {
@@ -75,5 +75,24 @@ namespace cgray {
 			}
 		}
 	}
+
+	void rt::Render::test_rendering4(core::Image & output)
+	{
+		for (int y = 0; y < output.height(); ++y) {
+			for (int x = 0; x < output.width(); ++x) {
+				IntersectInfo info;
+				Ray ray = camera_->generateRay(x, y);
+				if (group_->intersect(ray, info)) {
+					core::Color3f color(info.normal.dot(-ray.direction()));
+					output.setColor(x, y, color);
+				}
+				else {
+					output.setColor(x, y, core::Color3f::WHITE);
+				}
+			}
+		}
+	}
+
+
 
 }

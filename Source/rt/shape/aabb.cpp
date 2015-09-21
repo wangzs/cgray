@@ -6,7 +6,7 @@
 #endif
 
 cgray::rt::AABB::AABB()
-	: min_(-0.5f,0.0f,-0.5f), max_(0.5f,1.0f,0.5f)
+	: min_(0,0,0), max_(0, 0, 0)
 {
 }
 
@@ -81,7 +81,7 @@ bool cgray::rt::AABB::intersect(const Ray & ray, IntersectInfo & info)
 
 Vector3f cgray::rt::AABB::getCenter() const
 {
-	return min_ + (max_ + min_) / 2;
+	return min_ + (max_ - min_) / 2;
 }
 
 void cgray::rt::AABB::setBoundBox(const Vector3f & min, const Vector3f & max)
@@ -152,9 +152,22 @@ cgray::rt::AABB cgray::rt::AABB::operator+(const AABB & ref) const
 	return AABB(new_min, new_max);
 }
 
+cgray::rt::AABB cgray::rt::AABB::operator+(const Vector3f & point) const
+{
+	Vector3f new_min(std::min(min_[0], point[0]), std::min(min_[1], point[1]), std::min(min_[2], point[2]));
+	Vector3f new_max(std::max(max_[0], point[0]), std::max(max_[1], point[1]), std::max(max_[2], point[2]));
+	return AABB(new_min, new_max);
+}
+
 void cgray::rt::AABB::operator+=(const AABB & ref)
 {
 	min_ = Vector3f(std::min(min_[0], ref.min_[0]), std::min(min_[1], ref.min_[1]), std::min(min_[2], ref.min_[2]));
 	max_ = Vector3f(std::max(max_[0], ref.max_[0]), std::max(max_[1], ref.max_[1]), std::max(max_[2], ref.max_[2]));
 
+}
+
+void cgray::rt::AABB::operator+=(const Vector3f & point)
+{
+	min_ = Vector3f(std::min(min_[0], point[0]), std::min(min_[1], point[1]), std::min(min_[2], point[2]));
+	max_ = Vector3f(std::max(max_[0], point[0]), std::max(max_[1], point[1]), std::max(max_[2], point[2]));
 }

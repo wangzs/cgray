@@ -74,7 +74,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\ThirdParty\zlib-1.2.8\include;..\..\ThirdParty\libpng-1.6.18\include;..\..\ThirdParty\png++-0.2.5\include;..\..\ThirdParty\eigen-3.2.5;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\ThirdParty\zlib-1.2.8\include;..\..\ThirdParty\libpng-1.6.18\include;..\..\ThirdParty\png++-0.2.5\include;..\..\ThirdParty\eigen-3.2.5;..\..\ThirdParty\tinyobjloader</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>__WIN32;_CRT_SECURE_NO_WARNINGS;_LOG_INFO;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -105,7 +105,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>__WIN32;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\ThirdParty\zlib-1.2.8\include;..\..\ThirdParty\libpng-1.6.18\include;..\..\ThirdParty\png++-0.2.5\include;..\..\ThirdParty\eigen-3.2.5;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\ThirdParty\zlib-1.2.8\include;..\..\ThirdParty\libpng-1.6.18\include;..\..\ThirdParty\png++-0.2.5\include;..\..\ThirdParty\eigen-3.2.5;..\..\ThirdParty\tinyobjloader</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -138,14 +138,17 @@
     <ClCompile Include="..\..\Source\core\image.cpp" />
     <ClCompile Include="..\..\Source\main.cpp" />
     <ClCompile Include="..\..\Source\rt\camera.cpp" />
+    <ClCompile Include="..\..\Source\rt\kdtree.cpp" />
     <ClCompile Include="..\..\Source\rt\render.cpp" />
     <ClCompile Include="..\..\Source\rt\scene.cpp" />
     <ClCompile Include="..\..\Source\rt\shape\aabb.cpp" />
     <ClCompile Include="..\..\Source\rt\shape\group.cpp" />
+    <ClCompile Include="..\..\Source\rt\shape\mesh.cpp" />
     <ClCompile Include="..\..\Source\rt\shape\plane.cpp" />
     <ClCompile Include="..\..\Source\rt\shape\quadric.cpp" />
     <ClCompile Include="..\..\Source\rt\shape\sphere.cpp" />
     <ClCompile Include="..\..\Source\rt\shape\triangle.cpp" />
+    <ClCompile Include="..\..\ThirdParty\tinyobjloader\tiny_obj_loader.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\core\color.hpp" />
@@ -153,6 +156,7 @@
     <ClInclude Include="..\..\Source\core\math.hpp" />
     <ClInclude Include="..\..\Source\core\typedef.hpp" />
     <ClInclude Include="..\..\Source\rt\camera.hpp" />
+    <ClInclude Include="..\..\Source\rt\kdtree.hpp" />
     <ClInclude Include="..\..\Source\rt\light\light.hpp" />
     <ClInclude Include="..\..\Source\rt\ray.hpp" />
     <ClInclude Include="..\..\Source\rt\render.hpp" />
@@ -160,12 +164,14 @@
     <ClInclude Include="..\..\Source\rt\shape\aabb.hpp" />
     <ClInclude Include="..\..\Source\rt\shape\baseshape.hpp" />
     <ClInclude Include="..\..\Source\rt\shape\group.hpp" />
+    <ClInclude Include="..\..\Source\rt\shape\mesh.hpp" />
     <ClInclude Include="..\..\Source\rt\shape\plane.hpp" />
     <ClInclude Include="..\..\Source\rt\shape\quadric.hpp" />
     <ClInclude Include="..\..\Source\rt\shape\sphere.hpp" />
     <ClInclude Include="..\..\Source\rt\shape\triangle.hpp" />
     <ClInclude Include="..\..\Source\tests\render_test.hpp" />
     <ClInclude Include="..\..\Source\tools\julia.hpp" />
+    <ClInclude Include="..\..\ThirdParty\tinyobjloader\tiny_obj_loader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

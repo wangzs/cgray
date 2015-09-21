@@ -3,6 +3,9 @@
 void cgray::rt::SimpleGroup::add(std::shared_ptr<Shape> object)
 {
 	groups_.push_back(object);
+	AABB tmp;
+	object->getAABB(tmp);
+	bbox_ += tmp;
 }
 
 void cgray::rt::SimpleGroup::rebuildIndex()
@@ -28,12 +31,11 @@ bool cgray::rt::SimpleGroup::intersect(const Ray & ray, IntersectInfo & info)
 
 Vector3f cgray::rt::SimpleGroup::getNormal(const Vector3f & pos) const
 {
-	// TODO
 	return Vector3f();
 }
 
 bool cgray::rt::SimpleGroup::getAABB(AABB & box) const
 {
-	// TODO
-	return false;
+	box = bbox_;
+	return true;
 }

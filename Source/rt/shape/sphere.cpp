@@ -1,4 +1,5 @@
 #include "sphere.hpp"
+#include "aabb.hpp"
 
 cgray::rt::Sphere::Sphere()
 	: center_(0.0f, .0f, .0f), radius_(.5f)
@@ -62,7 +63,8 @@ Eigen::Vector3f cgray::rt::Sphere::getNormal(const Vector3f& pos) const
 
 bool cgray::rt::Sphere::getAABB(AABB& box) const
 {
-	// TODO
+	Vector3f diff = Vector3f(radius_, radius_, radius_);
+	box.setBoundBox(Vector3f(center_ - diff), Vector3f(center_ + diff));
 	return true;
 }
 

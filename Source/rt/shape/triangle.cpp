@@ -1,4 +1,5 @@
 #include "triangle.hpp"
+#include "aabb.hpp"
 
 cgray::rt::Triangle::Triangle()
 {
@@ -62,6 +63,12 @@ Eigen::Vector3f cgray::rt::Triangle::getNormal(const Vector3f& pos) const
 
 bool cgray::rt::Triangle::getAABB(AABB& box) const
 {
-	// TODO
+	float min_x = std::min(std::min(vertex_[0][0], vertex_[1][0]), vertex_[2][0]);
+	float min_y = std::min(std::min(vertex_[0][1], vertex_[1][1]), vertex_[2][1]);
+	float min_z = std::min(std::min(vertex_[0][2], vertex_[1][2]), vertex_[2][2]);
+	float max_x = std::max(std::max(vertex_[0][0], vertex_[1][0]), vertex_[2][0]);
+	float max_y = std::max(std::max(vertex_[0][1], vertex_[1][1]), vertex_[2][1]);
+	float max_z = std::max(std::max(vertex_[0][2], vertex_[1][2]), vertex_[2][2]);
+	box.setBoundBox(Vector3f(min_x, min_y, min_z), Vector3f(max_x, max_y, max_z));
 	return true;
 }
