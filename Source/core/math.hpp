@@ -45,4 +45,8 @@ namespace cgray {
 		return (float)(radian * 180.0f / M_PI);
 	}
 
+	inline float32 clamp(float32 val, float32 min, float32 max) {
+		return val < min ? min : (val > max ? max : val);
+	}
+
 }

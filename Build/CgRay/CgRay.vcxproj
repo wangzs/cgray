@@ -139,6 +139,7 @@
     <ClCompile Include="..\..\Source\main.cpp" />
     <ClCompile Include="..\..\Source\rt\camera.cpp" />
     <ClCompile Include="..\..\Source\rt\kdtree.cpp" />
+    <ClCompile Include="..\..\Source\rt\light\light.cpp" />
     <ClCompile Include="..\..\Source\rt\render.cpp" />
     <ClCompile Include="..\..\Source\rt\scene.cpp" />
     <ClCompile Include="..\..\Source\rt\shape\aabb.cpp" />

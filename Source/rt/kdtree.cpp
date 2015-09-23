@@ -64,7 +64,7 @@ bool cgray::rt::KdNode::intersect(const Ray & ray, IntersectInfo & info)
 {
 	IntersectInfo tmp;
 	if (bbox.intersect(ray, tmp) == true) {
-		if (left->triangles.size() > 0 || right->triangles.size() > 0) {
+		if (left->triangles.size() > 0 || right->triangles.size() >= 3) {
 			bool left_hit = left->intersect(ray, info);
 			bool right_hit = right->intersect(ray, info);
 			return left_hit || right_hit;
