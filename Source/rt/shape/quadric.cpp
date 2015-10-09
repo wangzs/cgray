@@ -101,4 +101,13 @@ bool cgray::rt::Quadric::getAABB(AABB & box) const
 	return false;
 }
 
+void cgray::rt::Quadric::setMaterial(std::shared_ptr<MaterialBase> material)
+{
+	material_ = material;
+}
+
+std::shared_ptr<cgray::rt::MaterialBase> cgray::rt::Quadric::material() const
+{
+	return material_;
+}
 

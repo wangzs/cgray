@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "baseshape.hpp"
 
 namespace cgray {
@@ -48,6 +48,10 @@ namespace cgray {
 			}
 
 			virtual bool getAABB(AABB& box) const override;
+
+			virtual void setMaterial(std::shared_ptr<MaterialBase> material) override;
+
+			virtual std::shared_ptr<MaterialBase> material() const override;
 
 		private:
 			Vector3f min_, max_;

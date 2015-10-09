@@ -1,5 +1,6 @@
 #pragma once
 #include "baseshape.hpp"
+#include "../material/materialbase.hpp"
 
 namespace cgray {
 	namespace rt {
@@ -24,9 +25,14 @@ namespace cgray {
 
 			virtual bool getAABB(AABB& box) const override;
 
+			virtual void setMaterial(std::shared_ptr<MaterialBase> material) override;
+
+			virtual std::shared_ptr<MaterialBase> material() const override;
+
 		private:
 			Vector3f center_;
 			float radius_;
+			std::shared_ptr<MaterialBase> material_;
 		};
 	}
 }

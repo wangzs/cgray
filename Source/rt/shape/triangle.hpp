@@ -1,5 +1,6 @@
 #pragma once
 #include "baseshape.hpp"
+#include "../material/materialbase.hpp"
 
 #include <cassert>
 
@@ -26,9 +27,14 @@ namespace cgray {
 
 			virtual bool getAABB(AABB& box) const override;
 
+			virtual void setMaterial(std::shared_ptr<MaterialBase> material) override;
+
+			virtual std::shared_ptr<MaterialBase> material() const override;
+
 
 		private:
 			Vector3f vertex_[3];
+			std::shared_ptr<MaterialBase> material_;
 		};
 	}
 }

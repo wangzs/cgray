@@ -13,13 +13,14 @@
 #include "../../core/math.hpp"
 #include "../ray.hpp"
 
-
 #include <memory>
 #include <float.h>
+
 namespace cgray {
 	namespace rt {
 		class Shape;
 		class AABB;
+		class MaterialBase;
 
 		struct IntersectInfo {
 			bool is_hit;
@@ -45,6 +46,8 @@ namespace cgray {
 
 			virtual bool getAABB(AABB& box) const = 0;
 
+			virtual void setMaterial(std::shared_ptr<MaterialBase> material) = 0;
+			virtual std::shared_ptr<MaterialBase> material() const = 0;
 		};
 	}
 }

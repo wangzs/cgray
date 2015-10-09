@@ -10,6 +10,9 @@ namespace cgray {
 	namespace core {
 		struct Color3f {
 			float32 r, g, b;
+			Color3f() {
+				r = g = b = 0.0f;
+			}
 
 			Color3f(float val) {
 				r = g = b = clampColor(val);

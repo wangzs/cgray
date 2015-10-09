@@ -1,6 +1,7 @@
 #pragma once
 #include "triangle.hpp"
 #include "aabb.hpp"
+#include "../material/materialbase.hpp"
 
 #include <vector>
 
@@ -20,8 +21,12 @@ namespace cgray {
 
 			virtual bool getAABB(AABB& box) const override;
 
+			virtual void setMaterial(std::shared_ptr<MaterialBase> material) override;
+
 		private:
 			void loadObj(const char* obj_name, const char* path);
+
+			virtual std::shared_ptr<MaterialBase> material() const override;
 
 		private:
 			std::vector<std::shared_ptr<Triangle>> triangles_;

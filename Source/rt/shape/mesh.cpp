@@ -48,6 +48,17 @@ void cgray::rt::Mesh::loadObj(const char * obj_name, const char* mtl_basepath)
 	}
 }
 
+
+std::shared_ptr<cgray::rt::MaterialBase> cgray::rt::Mesh::material() const
+{
+	throw std::logic_error("The method or operation is not implemented.");
+}
+
+void cgray::rt::Mesh::setMaterial(std::shared_ptr<MaterialBase> material)
+{
+	throw std::logic_error("The method or operation is not implemented.");
+}
+
 bool cgray::rt::Mesh::intersect(const Ray& ray, IntersectInfo& info)
 {
 	IntersectInfo tmp;

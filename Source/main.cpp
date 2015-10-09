@@ -7,8 +7,8 @@ int main() {
 
 	//cgray::test::juliaTest();
 	//cgray::test::renderingTest01();
-	cgray::test::renderingTest02();
-
+	//cgray::test::renderingTest02();
+	cgray::test::renderingTest03();
 
 	return 0;
 }

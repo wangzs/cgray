@@ -159,6 +159,8 @@
     <ClInclude Include="..\..\Source\rt\camera.hpp" />
     <ClInclude Include="..\..\Source\rt\kdtree.hpp" />
     <ClInclude Include="..\..\Source\rt\light\light.hpp" />
+    <ClInclude Include="..\..\Source\rt\material\material.hpp" />
+    <ClInclude Include="..\..\Source\rt\material\materialbase.hpp" />
     <ClInclude Include="..\..\Source\rt\ray.hpp" />
     <ClInclude Include="..\..\Source\rt\render.hpp" />
     <ClInclude Include="..\..\Source\rt\scene.hpp" />

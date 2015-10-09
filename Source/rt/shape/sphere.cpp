@@ -68,3 +68,13 @@ bool cgray::rt::Sphere::getAABB(AABB& box) const
 	return true;
 }
 
+void cgray::rt::Sphere::setMaterial(std::shared_ptr<MaterialBase> material)
+{
+	material_ = material;
+}
+
+std::shared_ptr<cgray::rt::MaterialBase> cgray::rt::Sphere::material() const
+{
+	return material_;
+}
+

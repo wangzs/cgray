@@ -93,6 +93,33 @@ namespace cgray {
 		}
 	}
 
+	void rt::Render::test_rendering5(core::Image & output)
+	{
+		for (int y = 0; y < output.height(); ++y) {
+			for (int x = 0; x < output.width(); ++x) {
+				IntersectInfo info;
+				Ray ray = camera_->generateRay(x, y);
+				if (group_->intersect(ray, info)) {
+					std::shared_ptr<rt::MaterialBase> material = info.hit_shape->material();
+					core::Color3f color(0.0f);
+					for (auto light : group_->lights()) {
+						LightHit hit = light->getLightHit(info.hit_point);
+						Vector3f reflect = hit.direction - 2 * info.normal * (hit.direction.dot(info.normal));
+						color = color
+							+ material->ambient_color() * light->getLightIntensity(hit)
+							+ 0.5f * pow(std::max(-ray.direction().dot(reflect), 0.0f), 32) * material->specular_color() * light->getLightIntensity(hit)
+							+ material->diffuse_color() * light->getLightIntensity(hit) * info.normal.dot(-hit.direction);
+					}
+					
+					output.setColor(x, y, color);
+				}
+				else {
+					output.setColor(x, y, core::Color3f::WHITE);
+				}
+			}
+		}
+	}
+
 
 
 }

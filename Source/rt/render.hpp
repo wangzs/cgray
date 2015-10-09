@@ -29,6 +29,8 @@ namespace cgray {
 
 			void test_rendering4(core::Image& output);
 
+			void test_rendering5(core::Image& output);
+
 		private:
 			std::shared_ptr<Camera> camera_;
 			std::shared_ptr<Group> group_;

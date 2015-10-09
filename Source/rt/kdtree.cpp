@@ -94,3 +94,13 @@ bool cgray::rt::KdNode::getAABB(AABB& box) const
 	box = bbox;
 	return true;
 }
+
+void cgray::rt::KdNode::setMaterial(std::shared_ptr<MaterialBase> material)
+{
+	throw std::logic_error("The method or operation is not implemented.");
+}
+
+std::shared_ptr<cgray::rt::MaterialBase> cgray::rt::KdNode::material() const
+{
+	throw std::logic_error("The method or operation is not implemented.");
+}

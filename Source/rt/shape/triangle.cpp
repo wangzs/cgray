@@ -72,3 +72,13 @@ bool cgray::rt::Triangle::getAABB(AABB& box) const
 	box.setBoundBox(Vector3f(min_x, min_y, min_z), Vector3f(max_x, max_y, max_z));
 	return true;
 }
+
+void cgray::rt::Triangle::setMaterial(std::shared_ptr<MaterialBase> material)
+{
+	material_ = material;
+}
+
+std::shared_ptr<cgray::rt::MaterialBase> cgray::rt::Triangle::material() const
+{
+	return material_;
+}

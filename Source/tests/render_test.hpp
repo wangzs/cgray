@@ -10,6 +10,7 @@
 #include "../rt/shape/triangle.hpp"
 #include "../rt/shape/aabb.hpp"
 #include "../rt/kdtree.hpp"
+#include "../rt/material/material.hpp"
 
 #include <iostream>
 
@@ -146,8 +147,59 @@ namespace cgray {
 			image0.flushToFile("png_result/mesh-fash-Buddha.png");
 		}
 
+		using namespace rt;
 
+		// basic shape with material
+		static void renderingTest03() {
+			core::Image image0(600, 400);
+			std::shared_ptr<rt::SimpleGroup> scene(new rt::SimpleGroup());
 
+			Material mt0;
+			Sphere s0(Vector3f(-2.f, 1.7f, 0), 2);		s0.setMaterial(std::make_shared<Material>(mt0));
+			Sphere s1(Vector3f(1, -1, 1), 2.2f);		s1.setMaterial(std::make_shared<Material>(mt0));
+			Sphere s2(Vector3f(3.f, 0.8f, -2), 2.f);	s2.setMaterial(std::make_shared<Material>(mt0));
+			Plane  p0(Vector3f(0, -3, 0), Vector3f(0, 1, 0));	p0.setMaterial(std::make_shared<Material>(mt0));
+			Triangle t0(Vector3f(3, 2, 3), Vector3f(3, 2, -3), Vector3f(0, 0.1f, -2));		t0.setMaterial(std::make_shared<Material>(mt0));
+			Triangle t1(Vector3f(-2, 3.7f, 0), Vector3f(1, 2, 1), Vector3f(3, 2.8f, -2));	t1.setMaterial(std::make_shared<Material>(mt0));
+			Triangle t2(Vector3f(-2, 3.7f, 0), Vector3f(1, 2, 1), Vector3f(3, 2.8f, -2));	t2.setMaterial(std::make_shared<Material>(mt0));
+			Triangle t3(Vector3f(3, -2, 3), Vector3f(3, -2, -3), Vector3f(-3, -2, -3));		t3.setMaterial(std::make_shared<Material>(mt0));
+			DiscPlane dp0(Vector3f(0, -1, 0), Vector3f(0, 1, 0), 1.0f);						dp0.setMaterial(std::make_shared<Material>(mt0));
+
+			DirectionalLight light0;
+			scene->addLight(std::make_shared<DirectionalLight>(light0));
+
+			scene->add(std::make_shared<Sphere>(s0));
+			scene->add(std::make_shared<Sphere>(s1));
+			scene->add(std::make_shared<Sphere>(s2));
+			scene->add(std::make_shared<Plane>(p0));
+			scene->add(std::make_shared<Triangle>(t0));
+			scene->add(std::make_shared<Triangle>(t1));
+			scene->add(std::make_shared<Triangle>(t2));
+			scene->add(std::make_shared<Triangle>(t3));
+			scene->add(std::make_shared<DiscPlane>(dp0));
+
+			std::shared_ptr<rt::Camera> camera0(
+				new rt::FishEyeCamera(Vector3f(0.0, 0, 4.0f),
+					Vector3f(1.6f, 0.5f, 0),	// target
+					Vector3f(0.3f, 1, 0),	// up
+					180,					// fov
+					image0.width(), image0.height()));
+			std::shared_ptr<rt::Camera> camera1(
+				new rt::PerspectiveCamera(Vector3f(0, 0.5, 10.0f),	// position
+					Vector3f(0, 0, -1),	// target
+					Vector3f(0, 1, 0),	// up
+					90,					// fov
+					image0.width(), image0.height()));
+			std::shared_ptr<rt::Camera> camera2(
+				new rt::OrthographicCamera(Vector3f(0.0, 0, 5.0f),	// position
+					Vector3f(0, 0, -1),	// target
+					Vector3f(0, 1, 0),	// up
+					image0.width(), image0.height(), 20.f));
+			rt::Render render(camera1, scene);
+			render.test_rendering5(image0);
+			image0.flushToFile("png_result/shape_with_material0.png");
+
+		}
 
 
 	}

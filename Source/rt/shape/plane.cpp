@@ -51,6 +51,16 @@ bool cgray::rt::Plane::getAABB(AABB& box) const
 	return false;
 }
 
+void cgray::rt::Plane::setMaterial(std::shared_ptr<MaterialBase> material)
+{
+	material_ = material;
+}
+
+std::shared_ptr<cgray::rt::MaterialBase> cgray::rt::Plane::material() const
+{
+	return material_;
+}
+
 cgray::rt::DiscPlane::DiscPlane()
 	: Plane(Vector3f(.0f, .0f, .0f), Vector3f(.0f, 1.0f, .0f)), radius_(5.0f)
 {

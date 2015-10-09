@@ -39,3 +39,24 @@ bool cgray::rt::SimpleGroup::getAABB(AABB & box) const
 	box = bbox_;
 	return true;
 }
+
+void cgray::rt::SimpleGroup::setMaterial(std::shared_ptr<MaterialBase> material)
+{
+	//TODO
+	return;
+}
+
+std::shared_ptr<cgray::rt::MaterialBase> cgray::rt::SimpleGroup::material() const
+{
+	throw std::logic_error("The method or operation is not implemented.");
+}
+
+void cgray::rt::SimpleGroup::addLight(std::shared_ptr<cgray::rt::Light> light)
+{
+	lights_.push_back(light);
+}
+
+const std::vector<std::shared_ptr<cgray::rt::Light>>& cgray::rt::SimpleGroup::lights() const
+{
+	return lights_;
+}

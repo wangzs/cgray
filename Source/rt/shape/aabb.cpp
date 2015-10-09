@@ -145,6 +145,17 @@ bool cgray::rt::AABB::getAABB(AABB& box) const
 	return true;
 }
 
+void cgray::rt::AABB::setMaterial(std::shared_ptr<MaterialBase> material)
+{
+	return;
+}
+
+
+std::shared_ptr<cgray::rt::MaterialBase> cgray::rt::AABB::material() const
+{
+	throw std::logic_error("The method or operation is not implemented.");
+}
+
 cgray::rt::AABB cgray::rt::AABB::operator+(const AABB & ref) const
 {
 	Vector3f new_min(std::min(min_[0], ref.min_[0]), std::min(min_[1], ref.min_[1]), std::min(min_[2], ref.min_[2]));
